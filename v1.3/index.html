@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- DISCLAIMER: This is my first html project, I just play the create mod, I'm not a professional. Look at the code at your own risk of getting triggered :p -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="pics2299">
+<meta name="description" content="This tool is meant to help find the right sequence of redstone power to get a specific RPM ratio from a sequence of adjustable chain gearshifts. You can finally get contraptions spinning at 69.420 RPM or multiply the rotation speed by 3.14!">
+<title>RPM Ratio Finder</title>
+<link rel="icon" href="images/ACG icon.png" type="image/x-icon">
+<link rel="stylesheet" href="presentation.css" type="text/css">
+</head>
+<body>
+<header><h1>RPM Ratio Finder</h1><hr></header>
+<div id="input" class="hiddenDefault">
+<div id="prompt1">By what ratio do you want to multiply the rotation speed?</div>
+<div>
+<input type="text" id="targetInput" placeholder="Any number > 0">
+<input type="text" id="targetInput2" placeholder="Denominator" class="hiddenDefault">
+<label for="inputAccuracy">
+<span>Accuracy Requested:</span>
+</label>
+<select id="inputAccuracy">
+<option value="0.01">0.01%</option>
+<option value="0.001">0.001%</option>
+<option value="0.0001">0.0001%</option>
+<option value="0.00001">0.00001%</option>
+</select></div>
+<button id="fractionSwitch" type="button" onclick="fracSwitch()"></button>
+<button id="addRatioButton" type="button" onclick="addRatio()"></button>
+<table id="inputTable">
+<tbody  id="inputTableBody" class="hiddenDefault">
+<tr id="inputLineMain">
+<th>Target ratio</th><th>Accuracy</th>
+</tr></tbody></table>
+<div id="selButtons" class="hiddenDefault">
+<button id="delButton" type="button" onclick="deleteInput()"></button>
+<button id="startButton" type="button" onclick="loadingPhase()"></button>
+</div>
+<div class="helpSection">
+<p class="mainHelpP">Press the "+" button to add a value to search for. There is no limit to the number of values you can search for at a time. If the last value entered was wrong, press the "X" button to cancel it. Once all the values are in the table, press the check mark button to start the search.</p>
+</div>
+</div>
+<div id="loading" class="hiddenDefault">
+<h2>Loading...</h2>
+<div><img id="mainLoadingCogs" src="images/cogs.gif"></div>
+<div class="helpSection">This process can take a while, don't mind your browser telling you the page is not responding :/</div>
+</div>
+<div id="result" class="hiddenDefault">
+<h3>Results</h3>
+<table id="resultTable">
+<tbody id="resultTableBody">
+<tr id="resultLineMain">
+<th>Target ratio</th><th>ACG sequence</th><th>Gear changes</th><th>Result ratio</th>
+</tr></tbody></table>
+<div class="helpSection">
+<p>Press <button id="refreshButton" type="button" onclick="inputPhase()"></button> to start a new search.</p>
+<p class="mainHelpP">To get the ratio you want, you need Adjustable Chain Gearshifts - called "ACGs" in the table - and sets of large and small cogwheels to double or halve the rotation speed, called "gear changes". The orange numbers in the ACG sequence are the redstone levels to give to the ACGs on the output of a chain and the blue numbers are the redstone levels on the input. The order in which the ACGs are placed doesn't matter, but it is good practice to put in first the steps that slow down the rotation, and then the steps that speed it up, to avoid going over the maximum speed (256 RPM by default). The number of gear changes refers to the number of times you need to double (on a green background) or halve (on a red background) the rotation speed in addition to the ACG sequence. If several lines are present for the same target, they all have the same precision and you can choose any of the solutions.</p>
+<p>Here is an example:</p>
+</div>
+<img id="helpImg" src="images/help.png">
+</div>
+<script src="script.js"></script>
+</body>
+</html>
