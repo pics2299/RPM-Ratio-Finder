@@ -1,0 +1,1188 @@
+body {
+  background-image: url("images/spruce planks.png");
+  color: white;
+  text-align: center;
+  word-break: keep-all;
+  word-wrap: break-word;
+  font-family: Minecraft, sans-serif;
+}
+input, select {
+  color: white;
+  font-family: Minecraft, sans-serif;
+  background-color: #29282A;
+}
+ul {
+  text-align: left;
+  padding: 0px 0px 0px 16px;
+  margin: 8px 8px 8px 0px;
+}
+table {
+  margin: auto;
+}
+p {
+  margin: 8px;
+}
+.scrollContainer {
+  overflow-x: auto;
+  overflow-y: auto;
+  min-height: 0px;
+  min-width: 0px;
+}
+.brassContainer {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #724731;
+  width: fit-content;
+  margin: auto;
+  > div {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #CEA05A;
+    background-color: #CEA05A;
+    width: fit-content;
+    > * {
+      border-style: solid;
+      border-width: 2px;
+      border-color: #3A2415;
+      width: fit-content;
+      padding: 5px;
+      background-image: url("images/brass background.png");
+      border-radius: 5px;
+    }
+  }
+  & .scrollContainer {
+    scrollbar-color: #CEA05A #3A2415;
+  }
+  & .focusTarget {
+    background-color: rgba(206, 160, 90, 0.5);
+  }
+}
+.shadowContainer {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #252431;
+  width: fit-content;
+  margin: auto;
+  > div {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #3E3B48;
+    background-color: #3E3B48;
+    width: fit-content;
+    > * {
+      border-style: solid;
+      border-width: 2px;
+      border-color: #29282A;
+      width: fit-content;
+      padding: 5px;
+      background-image: url("images/shadow background.png");
+      border-radius: 5px;
+    }
+  }
+  & .scrollContainer {
+    scrollbar-color: #3E3B48 #252431;
+  }
+  & .focusTarget {
+    background-color: rgba(124, 118, 144, 0.5);
+  }
+}
+.radiantContainer {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #B2B7A2;
+  width: fit-content;
+  margin: auto;
+  > div {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #FFFFF9;
+    background-color: #FFFFF9;
+    width: fit-content;
+    > * {
+      border-style: solid;
+      border-width: 2px;
+      border-color: #7A776C;
+      width: fit-content;
+      padding: 5px;
+      background-image: url("images/radiant background.png");
+      border-radius: 5px;
+    }
+  }
+  & .scrollContainer {
+    scrollbar-color: #FFFFF9 #7A776C;
+  }
+}
+.ACGgrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 64px;
+  grid-template-rows: 64px 64px;
+  padding: 40px 210px;
+  & .east > div {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+  & .south > div {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+  }
+  > div {
+    transform: translate(0px, 0px);
+  }
+  > .high {
+    transform: translate(-19.2px, -19.2px);
+  }
+  > .ACG {
+    & div {
+      position: absolute;
+    }
+    > .top {
+      width: 64px;
+      height: 64px;
+      background-image: url("images/adjustable_chain_gearshift_powered.png");
+    }
+    > .south {
+      width: 64px;
+      height: 64px;
+      background-image: url("images/adjustable_chain_gearshift_powered.png");
+      transform: translate(9.6px, 41.6px) skewX(45deg) scaleY(0.3);
+    }
+    > .shaft + div {
+      width: 48px;
+      height: 48px;
+      transform: translate(4px, 4px);
+      border-width: 4px;
+      border-style: solid;
+      > div {
+        font-size: 28px;
+        padding: 0px 2px 0px 4px;
+      }
+    }
+    > .inputNotes {
+      border-color: #0080FF;
+      > div {
+        background-color: #0080FF;
+        transform: translate(2px, 7.5px);
+      }
+    }
+    > .outputNotes {
+      border-color: #FF8000;
+      > div {
+        background-color: #FF8000;
+        right: 2px;
+        top: 7.5px;
+      }
+    }
+  }
+  > .ECD {
+    & div {
+      position: absolute;
+    }
+    > .top {
+      width: 64px;
+      height: 64px;
+      background-image: url("images/encased_chain_drive.png");
+    }
+    > .south {
+      width: 64px;
+      height: 64px;
+      background-image: url("images/encased_chain_drive.png");
+      transform: translate(9.6px, 41.6px) skewX(45deg) scaleY(0.3);
+    }
+  }
+  > .row1 > .side, .row2 > .side {
+    > .top {
+      width: 64px;
+      height: 56px;
+      background-image: url("images/encased_chain_drive.png");
+    }
+    > .inner {
+      height: 56px;
+    }
+  }
+  > .row1 > .side {
+    > .top {
+      transform: translate(16.8px, 24.8px);
+    }
+    > .south {
+      width: 64px;
+      height: 56px;
+      background-image: url("images/encased_chain_drive.png");
+      transform: translate(8.4px, -11.6px) skewX(45deg) scaleY(0.3);
+    }
+    > .inner {
+      width: 56px;
+      background-image: url("images/encased_chain_drive_end.png");
+      transform: translate(40.4px, 16.4px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .outer {
+      width: 64px;
+      background-image: url("images/encased_chain_drive_end.png");
+    }
+    > .nb1 {
+      height: 64px;
+      transform: translate(41.6px, 9.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .nb2 {
+      height: 8px;
+      transform: translate(33.2px, 29.2px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+  }
+  > .row2 > .side {
+    > .top {
+      transform: translate(16.8px, 16.8px);
+    }
+    > .inner {
+      width: 64px;
+      background-image: url("images/encased_chain_drive_end2.png");
+      transform: translate(36.4px, 12.4px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .nb1 {
+      width: 64px;
+      height: 8px;
+      background-image: url("images/encased_chain_drive_end.png");
+      transform: translate(50px, 46px) skewY(45deg) scaleX(0.3) rotate(90deg);
+    }
+    > .nb2 {
+      width: 64px;
+      height: 8px;
+      background-image: url("images/encased_chain_drive_end2.png");
+      transform: translate(33.2px, 29.2px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .nb3 {
+      width: 8px;
+      height: 64px;
+      background-image: url("images/encased_chain_drive_end2.png");
+      transform: translate(69.6px, 37.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+  }
+  > .shaft {
+    > div {
+      position: absolute;
+      height: 16px;
+    }
+    > .top {
+      background-image: url("images/axis.png");
+      width: 64px;
+      transform: translate(7.2px, 31.2px);
+    }
+    > .east {
+      background-image: url("images/axis_top.png");
+      width: 16px;
+      transform: translate(65.6px, 33.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .south {
+      background-image: url("images/axis.png");
+      width: 64px;
+      transform: translate(9.6px, 41.6px) skewX(45deg) scaleY(0.3);
+    }
+  }
+  > .cog {
+    > .shaft {
+      > div {
+        position: absolute;
+        height: 16px;
+      }
+      > .top {
+        width: 26px;
+      }
+      > .east {
+        background-image: url("images/axis_top.png");
+        width: 16px;
+      }
+      > .south {
+        width: 26px;
+      }
+    }
+    > .right {
+      > .top {
+        background-image: url("images/axis_half.png");
+        transform: translate(45.2px, 31.2px);
+      }
+      > .east {
+        transform: translate(65.6px, 33.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      }
+      > .south {
+        background-image: url("images/axis_half.png");
+        transform: translate(47.6px, 41.6px) skewX(45deg) scaleY(0.3);
+      }
+    }
+    > .left {
+      > .top {
+        background-image: url("images/axis.png");
+        transform: translate(7.2px, 31.2px);
+      }
+      > .east {
+        transform: translate(27.6px, 33.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      }
+      > .south {
+        background-image: url("images/axis.png");
+        transform: translate(9.6px, 41.6px) skewX(45deg) scaleY(0.3);
+      }
+    }
+    > .edge {
+      position: absolute;
+      width: 12px;
+      > div {
+        height: 100%;
+      }
+    }
+    > .side {
+      position: absolute;
+      > div {
+        position: absolute;
+        > div {
+          background-color: rgba(0, 0, 0, 0.5);
+          height: 100%;
+        }
+      }
+    }
+  }
+  > .small {
+    > .inner {
+      background-image: url("images/smallCog/edgeInner.png");
+      height: 48px;
+    }
+    > .flank {
+      background-image: url("images/smallCog/edgeFlank.png");
+    }
+    > .tip {
+      background-image: url("images/smallCog/edgeTip.png");
+      height: 12px;
+    }
+    > .nb1 > div, .nb4 > div, .nb9 > div, .nb12 > div {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    > .nb2 > div, .nb8 > div, .nb11 > div {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    > .nb3 > div, .nb5 > div, .nb7 > div, .nb14 > div {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    > .nb6 > div, .nb10 > div, .nb13 > div {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    > .nb1 {
+      transform: scaleY(0.8) skewX(-6.4deg) translate(38.44px, 8.9px);
+      height: 12px;
+    }
+    > .nb2 {
+      transform: scaleY(0.1) skewX(-18deg) translate(134.5px, 279px);
+      height: 8px;
+    }
+    > .nb3 {
+      transform: scaleY(0.64) skewX(15deg) translate(18px, 94.3px);
+      height: 12px;
+    }
+    > .nb4 {
+      transform: scaleY(0.816) skewX(-6.666deg) translate(29.3px, 2.2px);
+    }
+    > .nb5 {
+      transform: scaleY(0.666) skewX(15.6deg) translate(17.5px, 55.4px);
+    }
+    > .nb6 {
+      transform: skewX(6.4deg) translate(29.7px, 4.9px);
+      height: 8px;
+    }
+    > .nb7 {
+      transform: scaleY(0.64) skewX(15deg) translate(18.1px, 32.3px);
+      height: 12px;
+    }
+    > .nb8 {
+      transform: scaleY(0.1) skewX(-18deg) translate(138.8px, 347px);
+      height: 8px;
+    }
+    > .nb9 {
+      transform: scaleY(0.8) skewX(-6.4deg) translate(38.44px, 69.9px);
+      height: 12px;
+    }
+    > .nb10 {
+      transform: skewX(6.4deg) translate(29.7px, 71.6px);
+      height: 8px;
+    }
+    > .nb11 {
+      transform: scaleY(0.1) skewX(-17deg) translate(26.4px, -16.6px);
+    }
+    > .nb12 {
+      transform: scaleY(0.8) skewX(-6.4deg) translate(27.5px, 15.25px);
+    }
+    > .nb13 {
+      transform: skewX(6.4deg) translate(21.2px, 39.2px);
+    }
+    > .nb14 {
+      transform: scaleY(0.64) skewX(15deg) translate(4.5px, 100.8px);
+    }
+    > .side {
+      width: 72px;
+      height: 72px;
+      transform: translate(11.6px, 5.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      > .inner {
+        background-image: url("images/smallCog/eastInner.png");
+        width: 48px;
+        height: 48px;
+        transform: translate(12px, 12px) rotate(22.5deg);
+      }
+      > .gear {
+        background-image: url("images/smallCog/eastGear.png");
+        width: 72px;
+        height: 12px;
+      }
+      > .rot0 {
+        transform: translate(0px, 30px) rotate(22.5deg);
+      }
+      > .rot45 {
+        transform: translate(0px, 30px) rotate(67.5deg);
+      }
+      > .rot90 {
+        transform: translate(0px, 30px) rotate(112.5deg);
+      }
+      > .rot135 {
+        transform: translate(0px, 30px) rotate(157.5deg);
+      }
+      > .outer {
+        background-image: url("images/smallCog/eastOuter.png");
+        width: 32px;
+        height: 32px;
+        transform: translate(20px, 20px) rotate(22.5deg);
+      }
+    }
+  }
+  > .large {
+    > .inner {
+      background-image: url("images/largeCog/edgeInner.png");
+    }
+    > .flank {
+      background-image: url("images/largeCog/edgeFlank.png");
+    }
+    > .tip {
+      background-image: url("images/largeCog/edgeTip.png");
+      height: 12px;
+    }
+    > .nb1 > div, .nb21 > div, .nb25 > div {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    > .nb2 > div, .nb6 > div, .nb13 > div, .nb20 > div, .nb24 > div {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    > .nb3 > div, .nb19 > div, .nb23 > div {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    > .nb4 > div, .nb10 > div, .nb18 > div, .nb30 > div {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+    > .nb5 > div, .nb17 > div, .nb29 > div {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    > .nb7 > div, .nb9 > div, .nb22 > div, .nb26 > div {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    > .nb8 > div, .nb12 > div, .nb27 > div {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    > .nb11 > div, .nb14 > div, .nb15 > div, .nb16 > div, .nb28 > div {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    > .nb1 {
+      height: 14.3px;
+      transform: scaleY(0.8) skewX(-6.5deg) translate(38.3px, -15.5px);
+    }
+    > .nb2 {
+      height: 9.3px;
+      transform: scaleY(0.5) skewX(-12.5deg) translate(47.9px, 8px);
+    }
+    > .nb3 {
+      height: 14.3px;
+      transform: scaleY(0.1) skewX(-16deg) translate(114.3px, 225.5px);
+    }
+    > .nb4 {
+      height: 9.3px;
+      transform: scaleY(0.35) skewX(19.5deg) translate(-7.9px, 169.1px) rotate(180deg);
+    }
+    > .nb5 {
+      height: 14.3px;
+      transform: scaleY(0.64) skewX(15deg) translate(18.6px, 115.7px) rotate(180deg);
+    }
+    > .nb6 {
+      height: 23px;
+      transform: scaleY(0.5) skewX(-12deg) translate(24.4px, -41.9px);
+    }
+    > .nb7 {
+      height: 9.3px;
+      transform: translate(33.8px, -20.3px);
+    }
+    > .nb8 {
+      height: 14.3px;
+      transform: skewX(6.4deg) translate(30.2px, -20.2px);
+    }
+    > .nb9 {
+      height: 80px;
+      transform: translate(23.64px, -10.5px);
+    }
+    > .nb10 {
+      height: 80px;
+      transform: skewX(45deg) scaleY(0.3) translate(-5.8px, 138px);
+    }
+    > .nb11 {
+      height: 9.3px;
+      transform: skewX(12.5deg) translate(26px, 90.3px) rotate(180deg);
+    }
+    > .nb12 {
+      height: 14.3px;
+      transform: skewX(6.4deg) translate(30px, 90.1px) rotate(180deg);
+    }
+    > .nb13 {
+      height: 23px;
+      transform: scaleY(0.5) skewX(-12deg) translate(24.3px, 14.5px) rotate(180deg);
+    }
+    > .nb14 {
+      height: 23px;
+      transform: scaleY(0.9) skewX(12deg) translate(15.7px, 25.9px);
+    }
+    > .nb15 {
+      height: 23px;
+      transform: scaleY(0.915) skewX(12deg) translate(15.5px, 83px) rotate(180deg);
+    }
+    > .nb16 {
+      height: 9.3px;
+      transform: skewX(12.5deg) translate(25px, -10.8px);
+    }
+    > .nb17 {
+      height: 14.3px;
+      transform: scaleY(0.66) skewX(15.5deg) translate(18.5px, 6.5px);
+    }
+    > .nb18 {
+      height: 9.3px;
+      transform: scaleY(0.35) skewX(19.5deg) translate(-7.6px, 75.5px);
+    }
+    > .nb19 {
+      height: 14.3px;
+      transform: scaleY(0.1) skewX(-16deg) translate(117px, 336.9px) rotate(180deg);
+    }
+    > .nb20 {
+      height: 9.3px;
+      transform: scaleY(0.5) skewX(-12.5deg) translate(48.7px, 117.5px) rotate(180deg);
+    }
+    > .nb21 {
+      height: 14.3px;
+      transform: scaleY(0.8) skewX(-6.5deg) translate(38.3px, 91.5px) rotate(180deg);
+    }
+    > .nb22 {
+      height: 9.3px;
+      transform: translate(33.8px, 90.3px) rotate(180deg);
+    }
+    > .nb23 {
+      transform: scaleY(0.1) skewX(-16deg) translate(-48px, -267.8px);
+    }
+    > .nb24 {
+      transform: scaleY(0.5) skewX(-12.5deg) translate(14.2px, -39.5px);
+    }
+    > .nb25 {
+      transform: scaleY(0.8) skewX(-6.5deg) translate(18.45px, -5px);
+    }
+    > .nb26 {
+      transform: translate(17.6px, 17.6px);
+    }
+    > .nb27 {
+      transform: scaleY(1.04) skewX(6.4deg) translate(14.5px, 40.13px);
+    }
+    > .nb28 {
+      transform: scaleY(0.95) skewX(12.5deg) translate(7.7px, 68.7px);
+    }
+    > .nb29 {
+      transform: scaleY(0.64) skewX(15deg) translate(-6.4px, 131px);
+    }
+    > .nb30 {
+      transform: scaleY(0.35) skewX(19.5deg) translate(-61px, 273px);
+    }
+    > .side {
+      width: 120px;
+      height: 120px;
+      transform: translate(-12.4px, -18.5px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      > .inner {
+        background-image: url("images/largeCog/eastInner.png");
+        width: 80px;
+        height: 80px;
+      }
+      > .gear {
+        background-image: url("images/largeCog/eastGear.png");
+        width: 120px;
+        height: 12px;
+      }
+      > .outer {
+        background-image: url("images/largeCog/eastOuter.png");
+        width: 72px;
+        height: 56px;
+      }
+      > .rot0 {
+        transform: translate(0px, 54px);
+      }
+      > .rot22_5 {
+        transform: translate(0px, 54px) rotate(22.5deg);
+      }
+      > .rot45 {
+        transform: translate(0px, 54px) rotate(45deg);
+      }
+      > .rot67_5 {
+        transform: translate(0px, 54px) rotate(67.5deg);
+      }
+      > .rot90 {
+        transform: translate(0px, 54px) rotate(90deg);
+      }
+      > .rot112_5 {
+        transform: translate(0px, 54px) rotate(112.5deg);
+      }
+      > .rot135 {
+        transform: translate(0px, 54px) rotate(135deg);
+      }
+      > .rot157_5 {
+        transform: translate(0px, 54px) rotate(157.5deg);
+      }
+      > .nb1 {
+        transform: translate(20px, 20px) rotate(45deg);
+      }
+      > .nb2 {
+        transform: translate(20px, 20px);
+      }
+      > .nb3 {
+        transform: translate(24px, 32px) rotate(90deg);
+      }
+      > .nb4 {
+        transform: translate(24px, 32px);
+      }
+    }
+  }
+  > .row1 > .goggle {
+    transform: translate(-180px, 90px);
+  }
+  > .row2 > .goggle {
+    transform: translate(-180px, -65px);
+  }
+  > .speedometer {
+    & div {
+      position: absolute;
+    }
+    > .base {
+      transform: translate(16.8px, 20.8px);
+      > .top {
+        width: 64px;
+        height: 56px;
+        background-image: url(images/speedometer/baseTop.png);
+      }
+      > .east {
+        width: 56px;
+        height: 8px;
+        background-image: url(images/speedometer/baseSide.png);
+        transform: translate(37.2px, 25.2px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      }
+      > .south {
+        width: 64px;
+        height: 8px;
+        background-image: url(images/speedometer/baseSide.png);
+        transform: translate(1.2px, 53.2px) skewX(45deg) scaleY(0.3);
+      }
+    }
+    > .body {
+      transform: translate(6.4px, 10.4px);
+      > .top {
+        height: 48px;
+        width: 56px;
+        background-image: url(images/speedometer/bodyFace.png);
+      }
+      > .east {
+        height: 48px;
+        width: 48px;
+        background-image: url(images/speedometer/bodyEast.png);
+        transform: translate(39.2px, 7.2px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      }
+      > .south {
+        height: 48px;
+        width: 56px;
+        background-image: url(images/speedometer/bodyFace.png);
+        transform: translate(7.2px, 31.2px) skewX(45deg) scaleY(0.3);
+      }
+    }
+    > .screen {
+      transform: translate(12px, 12px);
+      > .top {
+        width: 40px;
+        height: 40px;
+        background-image: url(images/speedometer/screenTop.png);
+      }
+      > .east {
+        width: 40px;
+        height: 8px;
+        background-image: url(images/speedometer/screenSide.png);
+        transform: translate(21.2px, 17.2px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+      }
+      > .south {
+        width: 40px;
+        height: 8px;
+        background-image: url(images/speedometer/screenSide.png);
+        transform: translate(1.2px, 37.2px) skewX(45deg) scaleY(0.3);
+      }
+      > .dial {
+        transform: translate(10.2px, 26.2px);
+      }
+      & .dialRotate {
+        width: 20px;
+        height: 4px;
+        background-image: url(images/speedometer/dial.png);
+        transform-origin: 18px 2px;
+      }
+      > .button {
+        width: 4.4px;
+        height: 4.4px;
+        background-color: #505351;
+        transform: translate(26px, 26px);
+      }
+    }
+    > .goggle {
+      width: 270px;
+      height: 54px;
+      padding: 3px;
+      background-color: rgba(48, 36, 48, 0.95);
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 6px;
+      border-color: rgb(74, 39, 123);
+      > .goggleChild {
+        position: relative;
+        left: 27px;
+        text-align: left;
+        > span {
+          position: absolute;
+          width: 12.8px;
+          height: 12.8px;
+          left: 6.4px;
+          background-size: 12.8px;
+          ~ span {
+            left: 20.8px;
+            ~ span {
+              left: 35.2px;
+            }
+          }
+        }
+      }
+      & .speedInfo {
+        position: absolute;
+        left: 53px;
+        top: -2px;
+      }
+      > .image {
+        position: absolute;
+        left: 0px;
+        top: -1px;
+        width: 25.6px;
+        height: 25.6px;
+        background-image: url(images/speedometer/goggles.png);
+        background-size: 25.6px;
+      }
+      > .nb1 {
+        color: #FCFCFC;
+        text-shadow: 1.6px 1.6px #3F3F3F;
+      }
+      > .nb2 {
+        color: #A8A8A8;
+        text-shadow: 1.6px 1.6px #292929;
+      }
+      > .speedNone {
+        color: #545454;
+        text-shadow: 1.6px 1.6px #151515;
+        > span {
+          background-image: url(images/speedometer/gaugeNone.png);
+        }
+      }
+      > .speedSlow {
+        color: #54FC54;
+        text-shadow: 1.6px 1.6px #153F15;
+        > span {
+          background-color: #54FC54;
+          ~ span {
+            background-color: transparent;
+            background-image: url(images/speedometer/gaugeSlow.png);
+          }
+        }
+      }
+      > .speedModerate {
+        color: #54FCFC;
+        text-shadow: 1.6px 1.6px #153F3F;
+        > span {
+          background-color: #54FCFC;
+          ~ span ~ span {
+            background-color: transparent;
+            background-image: url(images/speedometer/gaugeModerate.png);
+          }
+        }
+      }
+      > .speedFast {
+        color: #FC54FC;
+        text-shadow: 1.6px 1.6px #3F153F;
+        > span {
+          background-color: #FC54FC;
+        }
+      }
+    }
+    ~ .row1 > .goggle {
+      transform: translate(-10px, 90px);
+    }
+    ~ .row2 > .goggle {
+      transform: translate(-10px, -65px);
+    }
+  }
+  > .ACG > .shaft, .ECD > .shaft, .speedometer > .shaft {
+    > .top {
+      height: 16px;
+      width: 4px;
+      background-image: url(images/axis.png);
+      transform: translate(67.2px, 31.2px);
+    }
+    > .east {
+      height: 16px;
+      width: 16px;
+      background-image: url(images/axis_top.png);
+      transform: translate(65.6px, 33.6px) skewY(45deg) scaleX(0.3) rotate(-90deg);
+    }
+    > .south {
+      height: 16px;
+      width: 4px;
+      background-image: url(images/axis.png);
+      transform: translate(69.6px, 41.6px) skewX(45deg) scaleY(0.3);
+    }
+  }
+  & .repeat {
+    position: absolute;
+    > .repeatChild {
+      position: absolute;
+      background-color: #321400;
+      width: 64px;
+      height: 8px;
+    }
+    > .nb1 {
+      transform: translate(42px, -32px);
+    }
+    > .nb2 {
+      transform: translate(42px, 152px);
+    }
+    > .nb3 {
+      transform: translate(226px, -32px);
+    }
+    > .nb4 {
+      transform: translate(226px, 152px);
+    }
+    > .nb5 {
+      width: 8px;
+      height: 192px;
+      transform: translate(42px, -32px);
+    }
+    > .nb6 {
+      width: 8px;
+      height: 192px;
+      transform: translate(282px, -32px);
+    }
+    > .nb7 {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 32px;
+      transform: translate(106px, -32px);
+    }
+  }
+  & .repeatLabel {
+    position: absolute;
+    padding: 0px 2px 0px 4px;
+    font-size: 28px;
+    background-color: #321400;
+  }
+}
+th {
+  font-weight: normal;
+  border: 1px solid white;
+  padding: 2px 10px;
+}
+h2 {
+  margin: 0px;
+}
+.inputCol1 {
+  width: 22vw;
+}
+.inputCol2 {
+  border-width: 0px;
+  padding: 1px;
+}
+.delButton {
+  background-image: url("images/delete.png");
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+}
+.spaceON {
+  color: rgb(70, 240, 25);
+}
+.spaceOFF {
+  color: rgb(240, 70, 25);
+}
+.spaceButtonON {
+  width: 20px;
+  height: 20px;
+  background-image: url("images/rose_quartz_lamp_powered.png");
+}
+.spaceButtonOFF {
+  width: 20px;
+  height: 20px;
+  background-image: url("images/rose_quartz_lamp.png");
+}
+#inputTop {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+#inputTopLeft {
+  width: 65vw;
+}
+#inputTopRight {
+  width: 35vw;
+}
+#inputBottom {
+  position: relative;
+  & p {
+    text-align: left;
+  }
+}
+#inputBottomLeft {
+  position: absolute;
+  left: 5vw;
+  width: 55vw;
+  & .scrollContainer {
+    width: 50vw;
+    max-width: 50vw;
+  }
+}
+#inputBottomRight {
+  position: absolute;
+  left: 65vw;
+  width: 30vw;
+  & .scrollContainer {
+    width: 25vw;
+    max-width: 25vw;
+  }
+}
+#resultTop {
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 3vh 0px;
+}
+#resultTopLeft {
+  margin: 5px 1vw 5px 1vw;
+  width: 65vw;
+  & .scrollContainer {
+    max-width: 60vw;
+    max-height: 90vh;
+  }
+}
+#resultTitleFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > h3, p {
+    margin: 0px 6vw;
+  }
+  > p {
+    display: flex;
+    align-items: center;
+    > button {
+      margin: 0px 6px;
+    }
+  }
+}
+#resultTopRight {
+  margin: 5px 2vw 5px 0px;
+  flex-grow: 1;
+  & .scrollContainer {
+    max-width: 25vw;
+    max-height: 90vh;
+    > ul {
+      min-width: 179px;
+      > li {
+        margin: 0px 0px 8px 0px;
+        > span {
+          color: #0080FF;
+          ~ span {
+            color: #FF8000;
+          }
+        }
+        ~ li {
+          > span {
+            color: #46F019;
+            ~ span {
+              color: #F04619;
+            }
+          }
+        }
+      }
+    }
+    > p {
+      text-align: justify;
+    }
+  }
+}
+#resultLineMain th {
+  min-width: 100px;
+  ~ th {
+    min-width: 112px;
+    ~ th ~ th {
+      min-width: 95px;
+    }
+  }
+}
+#historyLineMain th {
+  min-width: 112px;
+  ~ th ~ th {
+    min-width: 39px;
+  }
+}
+@media (min-height: 540px) {
+  #inputBottom .scrollContainer {
+    max-height: 58vh;
+  }
+  .setupDispON > #resultTop .scrollContainer {
+    max-height: 35vh;
+  }
+}
+@media (420px <= height < 540px) {
+  #inputBottom .scrollContainer {
+    max-height: 45vh;
+  }
+  .setupDispON > #resultTop .scrollContainer {
+    max-height: 25vh;
+  }
+}
+@media (300px <= height < 420px) {
+  #inputBottom .scrollContainer {
+    max-height: 30vh;
+  }
+  .setupDispON > #resultTop .scrollContainer {
+    max-height: 15vh;
+  }
+}
+#startButton {
+  background-image: url("images/search.png");
+  background-size: cover;
+  width: 36px;
+  height: 36px;
+}
+.refreshButton {
+  background-image: url("images/refresh.png");
+  background-size: cover;
+  width: 36px;
+  height: 36px;
+}
+.borderTransition {
+  transition: border-color 0.3s;
+}
+.errorInput {
+  border-color: rgba(240, 25, 25, 0.8);
+}
+.doublePos {
+  background-color: rgba(70, 240, 25, 0.8);
+}
+.doubleNeg {
+  background-color: rgba(240, 70, 25, 0.8);
+}
+.ACGPos {
+  background-color: rgba(0, 128, 255, 0.8);
+  margin: 2px;
+  padding: 0px 1.5px;
+}
+.ACGNeg {
+  background-color: rgba(255, 128, 0, 0.8);
+  margin: 2px;
+  padding: 0px 1.5px;
+}
+.ACGMult {
+  padding: 2px;
+  margin: 0px 2px;
+  background-color: rgb(50, 20, 0, 0.8);
+}
+.successExact {
+  background-color: rgba(70, 240, 25, 0.8);
+}
+.noSolution {
+  background-color: rgba(240, 70, 25, 0.8);
+}
+.hiddenDefault, .setupDispOFF > .radiantContainer, .setupDispOFF p > span {
+  display: none;
+}
+.mainLoadingCogs {
+  position: relative;
+  padding: 0px 40px;
+  > .top {
+    position: absolute;
+    top: 0px;
+  }
+  > .bottom {
+    position: absolute;
+    bottom: 0px;
+  }
+  > .left {
+    left: 0px;
+  }
+  > .right {
+    right: 0px;
+  }
+  > div > img {
+    width: 60px;
+  }
+}
+#loadingPress {
+  width: 300px;
+}
+#loadingError {
+  background-color: #78230C;
+  border: 2px solid #F04619;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+  padding: 4px;
+  > a:link, a:visited {
+    color: red;
+  }
+}
+#gridList {
+  height: 224.67px;
+  scroll-snap-type: y mandatory;
+  > .scrollContainer {
+    width: 92vw;
+    scroll-snap-align: center;
+    ~ .scrollContainer {
+      margin: 16.67px 0px 0px 0px;
+    }
+  }
+}
+@font-face {
+  font-family: "Minecraft";
+  src: url("fonts/MinecraftRegular-Bmg3.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Minecraft";
+  src: url("fonts/MinecraftItalic-R8Mo.otf");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Minecraft";
+  src: url("fonts/MinecraftBold-nMK1.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Minecraft";
+  src: url("fonts/MinecraftBoldItalic-1y1e.otf");
+  font-weight: bold;
+  font-style: italic;
+}
