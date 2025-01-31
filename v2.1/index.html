@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- DISCLAIMER: This is my first html project, I just play the create mod, I'm not a professional. Look at the code at your own risk of getting triggered :p -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="pics2299">
+<meta name="description" content="This tool is meant to help find the right sequence of redstone power to get a specific RPM ratio from a sequence of adjustable chain gearshifts. You can finally get contraptions spinning at 69.420 RPM or multiply the rotation speed by 3.14!">
+<title>RPM Ratio Finder</title>
+<link rel="icon" href="images/ACG icon.png" type="image/x-icon">
+<link rel="stylesheet" href="presentation.css" type="text/css">
+</head>
+<body>
+<div id="input" class="hiddenDefault">
+<div id="inputTop">
+<div id="inputTopLeft">
+<div> 
+<h2>RPM Ratio Finder</h2>
+</div>
+<div>
+<div class="shadowContainer borderTransition" style="display: inline-block"><div style="display: inline-block">
+<input type="text" id="targetInput" enterkeyhint="enter" placeholder="Any ratio > 0" onclick="setFocus(0)">
+</div></div>
+<label for="inputAccuracy">Accuracy:</label>
+<div class="shadowContainer" style="display: inline-block"><div style="display: inline-block">
+<select id="inputAccuracy" onclick="setFocus(1)">
+<option value="0.01">0.01% (instant)</option>
+<option value="0.001" selected="true">0.001%</option>
+<option value="0.0001">0.0001%</option>
+<option value="0.00001">0.00001%</option>
+<option value="0.000001">0.000001% (AFK)</option>
+</select>
+</div></div>
+</div>
+</div>
+<div id="inputTopRight">
+<div class="brassContainer" onclick="setFocus(2)"><div><div>
+<div>Search for:</div>
+<div id="searchSpaceInput">
+<div>
+<label for="searchGreaterInputButton" id="searchGreaterInputText" class="spaceON">Greater</label>
+<button id="searchGreaterInputButton" class="spaceButtonON" type="button" onclick="searchGreaterToggle()"></button>
+</div>
+<div>
+<label for="searchEqualInputButton" id="searchEqualInputText" class="spaceON">Equal</label>
+<button id="searchEqualInputButton" class="spaceButtonON" type="button" onclick="searchEqualToggle()"></button>
+</div>
+<div>
+<label for="searchLowerInputButton" id="searchLowerInputText" class="spaceON">Lower</label>
+<button id="searchLowerInputButton" class="spaceButtonON" type="button" onclick="searchLowerToggle()"></button>
+</div>
+</div>
+</div></div></div>
+</div>
+</div>
+<hr>
+<div id="inputBottom">
+<div id="inputBottomLeft">
+<div class="brassContainer"><div><div>
+<div class="scrollContainer">
+<div id="infoInput">
+<div class="selectInfo hiddenDefault">
+<p>&emsp;Input the RPM ratios you need! Press enter after typing each value to add it to the list of searched ratios. You can change the settings before inputting a new target if needed. Decimal points and simple operations are supported (parentheses, +, -, *, / and ^). Once all the values you need are in the table, you can start the search with the check mark button.</p>
+</div>
+<div class="selectInfo hiddenDefault">
+<p>&emsp;It's not always possible to reach the exact value using Adjustable Chain Gearshifts. The accuracy of the search is how much leeway you can afford in the approximation; however, a smaller amount of leeway results in a larger sequence (less compact setup) and it takes longer to find.</p>
+</div>
+<div class="selectInfo hiddenDefault">
+<p>&emsp;You can decide to enable or disable results that are greater, equal or lower than the target. This is useful if you need a ratio ever so slightly larger than the target, for example.</p>
+</div>
+<div class="selectInfo hiddenDefault">
+<p>&emsp;You can check the settings for each target individually by selecting them in the table. If something's wrong about a target value or its settings, you can delete it from the table using its X button.</p>
+</div>
+<div class="selectInfo hiddenDefault">
+<p>&emsp;When enabled, any valid results in the history can be used in the search process, saving time. You don't really want to disable this unless you're specifically looking for a shorter sequence than one of the results in the history, using a lower accuracy than the previous search.</p>
+</div>
+<div class="selectInfo hiddenDefault">
+<p>&emsp;This is the list of all the sequences you looked up this session, and their corresponding ratios. Just in case you clicked "New Search" a bit too fast!</p>
+</div>
+</div>
+<div id="historyDiv" class="hiddenDefault">
+<div>History</div>
+<label for="useHistoryInputButton" id="useHistoryInputText" class="spaceON">Use history for search</label>
+<button id="useHistoryInputButton" class="spaceButtonON" type="button" onclick="useResultListToggle()"></button>
+<table id="historyTable"  onclick="setFocus(5)">
+<tbody id="historyTableBody">
+<tr id="historyLineMain" class="lineMain">
+<th>ACG sequence</th><th>Gear changes</th><th>Ratio</th>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div></div>
+</div>
+<div id="inputBottomRight" class="hiddenDefault">
+<div class="brassContainer"><div><div>
+<div class="scrollContainer">
+<table id="inputTable">
+<tbody id="inputTableBody">
+<tr id="inputLineMain">
+<th class="inputCol1" onclick="setFocus(3)">Target ratio</th><th class="inputCol2"></th>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></div>
+<button id="startButton" type="button" onclick="loadingPhase()"></button>
+</div>
+</div>
+</div>
+<div id="loading" class="hiddenDefault">
+<div class="brassContainer"><div><div>
+<div class="mainLoadingCogs">
+<h2>Loading...</h2>
+<img id="loadingPress" src="images/loading press.gif">
+<div class="top left"><img src="images/cogs.gif"></div>
+<div class="top right"><img src="images/cogs.gif"></div>
+<div class="bottom left"><img src="images/cogs.gif"></div>
+<div class="bottom right"><img src="images/cogs.gif"></div>
+</div>
+Don't mind your browser telling you the page is unresponsive :/
+<br>This process can take a while, but it can run fine in the background!
+</div></div></div>
+</div>
+<div id="loadingError" class="hiddenDefault">
+An error occurred.&emsp;<a href="https://github.com/pics2299/RPM-Ratio-Finder/issues">Please report what happened on GitHub!</a>&emsp;Back&emsp;
+<button class="refreshButton" type="button" onclick="inputPhase()"></button>
+</div>
+<div id="result" class="hiddenDefault setupDispOFF">
+<div id="resultTop">
+<div id="resultTopLeft">
+<div class="brassContainer"><div><div>
+<div class="scrollContainer">
+<div id="resultTitleFlex">
+<h3>Results</h3>
+<p><button class="refreshButton" type="button" onclick="inputPhase()"></button>New Search</p>
+</div>
+<table id="resultTable">
+<tbody id="resultTableBody">
+<tr id="resultLineMain">
+<th>Target ratio</th><th>ACG sequence</th><th>Gear changes</th><th>Result ratio</th>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></div>
+</div>
+<div id="resultTopRight">
+<div class="brassContainer"><div><div>
+<div class="scrollContainer">
+<ul>
+<li><u>ACG sequence</u>: redstone power to feed the <span>input</span> and <span>output</span> of a set of Adjustable Chain Gearshifts. Don't forget about analog levers!</li>
+<li><u>Gear changes</u>: number of times to <span>double</span> or <span>halve</span> the rotation speed.</li>
+<li>Results highlighted in <span>green</span> perfectly reach the target ratio, instead of being an approximation.</li>
+</ul>
+<p>&emsp;Any order works, but to avoid going over 256 RPM in the middle of the sequence, it's best to put in the steps that slow down the rotation first. There can be several valid sequences for one target. <span>Below, there is an example of a setup for each sequence in the table. There's no need to copy everything block for block though!</span></p>
+</div>
+</div></div></div>
+</div>
+</div>
+<div class="radiantContainer"><div><div>
+<div id="gridList" class="scrollContainer">
+</div>
+</div></div></div>
+</div>
+<div id="assetLibrary" class="hiddenDefault">
+<div class="repeat">
+<div class="repeatChild nb1"></div>
+<div class="repeatChild nb2"></div>
+<div class="repeatChild nb3"></div>
+<div class="repeatChild nb4"></div>
+<div class="repeatChild nb5"></div>
+<div class="repeatChild nb6"></div>
+<div class="nb7">
+<div class="repeatLabel"></div>
+</div>
+</div>
+<div class="shaft">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="speedometer">
+<div class="base">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="body">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="screen">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+<div class="dial">
+<div class="dialRotate"></div>
+</div>
+<div class="button"></div>
+</div>
+<div class="shaft">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="goggle">
+<div class="image"></div>
+<div class="goggleChild nb1">Gauge Information:</div>
+<div class="goggleChild nb2">Rotation Speed</div>
+<div class="goggleChild"><span></span><span></span><span></span>
+<div class="speedInfo"></div>
+</div>
+</div>
+</div>
+<div class="row1">
+<div class="side">
+<div class="east outer nb1"><div></div></div>
+<div class="top"><div></div></div>
+<div class="south"><div></div></div>
+<div class="east inner"><div></div></div>
+<div class="east outer nb2"><div></div></div>
+</div>
+<div class="top"><div></div></div>
+<div class="shaft">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div><div></div></div>
+</div>
+<div class="row2">
+<div class="side">
+<div class="east outer nb1"><div></div></div>
+<div class="top"><div></div></div>
+<div class="east inner"><div></div></div>
+<div class="east outer nb2"><div></div></div>
+<div class="east outer nb3"><div></div></div>
+</div>
+<div class="top"><div></div></div>
+<div class="south"><div></div></div>
+<div class="shaft">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div><div></div></div>
+</div>
+<div class="small cog">
+<div class="shaft left">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="edge flank nb1"><div></div></div>
+<div class="edge flank nb2"><div></div></div>
+<div class="edge flank nb3"><div></div></div>
+<div class="edge inner nb4"><div></div></div>
+<div class="edge inner nb5"><div></div></div>
+<div class="edge flank nb6"><div></div></div>
+<div class="edge flank nb7"><div></div></div>
+<div class="edge flank nb8"><div></div></div>
+<div class="edge flank nb9"><div></div></div>
+<div class="edge flank nb10"><div></div></div>
+<div class="edge tip nb11"><div></div></div>
+<div class="edge tip nb12"><div></div></div>
+<div class="edge tip nb13"><div></div></div>
+<div class="edge tip nb14"><div></div></div>
+<div class="side">
+<div class="inner"><div></div></div>
+<div class="gear rot0"><div></div></div>
+<div class="gear rot45"><div></div></div>
+<div class="gear rot90"><div></div></div>
+<div class="gear rot135"><div></div></div>
+<div class="outer"><div></div></div>
+</div>
+<div class="shaft right">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+</div>
+<div class="large cog">
+<div class="shaft left">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+<div class="edge flank nb1"><div></div></div>
+<div class="edge flank nb2"><div></div></div>
+<div class="edge flank nb3"><div></div></div>
+<div class="edge flank nb4"><div></div></div>
+<div class="edge flank nb5"><div></div></div>
+<div class="edge inner nb6"><div></div></div>
+<div class="edge flank nb7"><div></div></div>
+<div class="edge flank nb8"><div></div></div>
+<div class="edge inner nb9"><div></div></div>
+<div class="edge inner nb10"><div></div></div>
+<div class="edge flank nb11"><div></div></div>
+<div class="edge flank nb12"><div></div></div>
+<div class="edge inner nb13"><div></div></div>
+<div class="edge inner nb14"><div></div></div>
+<div class="edge inner nb15"><div></div></div>
+<div class="edge flank nb16"><div></div></div>
+<div class="edge flank nb17"><div></div></div>
+<div class="edge flank nb18"><div></div></div>
+<div class="edge flank nb19"><div></div></div>
+<div class="edge flank nb20"><div></div></div>
+<div class="edge flank nb21"><div></div></div>
+<div class="edge flank nb22"><div></div></div>
+<div class="edge tip nb23"><div></div></div>
+<div class="edge tip nb24"><div></div></div>
+<div class="edge tip nb25"><div></div></div>
+<div class="edge tip nb26"><div></div></div>
+<div class="edge tip nb27"><div></div></div>
+<div class="edge tip nb28"><div></div></div>
+<div class="edge tip nb29"><div></div></div>
+<div class="edge tip nb30"><div></div></div>
+<div class="side">
+<div class="inner nb1"><div></div></div>
+<div class="inner nb2"><div></div></div>
+<div class="gear rot0"><div></div></div>
+<div class="gear rot22_5"><div></div></div>
+<div class="gear rot45"><div></div></div>
+<div class="gear rot67_5"><div></div></div>
+<div class="gear rot90"><div></div></div>
+<div class="gear rot112_5"><div></div></div>
+<div class="gear rot135"><div></div></div>
+<div class="gear rot157_5"><div></div></div>
+<div class="outer nb3"><div></div></div>
+<div class="outer nb4"><div></div></div>
+</div>
+<div class="shaft right">
+<div class="top"><div></div></div>
+<div class="east"><div></div></div>
+<div class="south"><div></div></div>
+</div>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
