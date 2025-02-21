@@ -127,14 +127,14 @@ function loadingPhase() {
     for (let i = 0; i < resultList.length; i++) {
       document.getElementById("historyTableBody").lastChild.remove();
     }
-    try {
-      setTimeout(function() {
+    setTimeout(function() {
+      try {
         targetRPM(targetList, settingsList);
-      }, 100);
-    } catch {
-      loadingDiv.style.display = "none";
-      document.getElementById("loadingError").style.display = "flex";
-    }
+      } catch {
+        loadingDiv.style.display = "none";
+        document.getElementById("loadingError").style.display = "flex";
+      }
+    }, 100);
   }
 }
 function resultPhase() {
@@ -814,7 +814,7 @@ function looprs(nbacg, minerror, maxerror, F, sol, L, indexrs) {
     const c = num / den;
     for (let a = 0; a < minerror.length; a++) {
       for (let b = 0; b < minerror[a].length; b++) {
-        if (c > minerror[a][b] && c < maxerror[a][b]) {
+        if (c >= minerror[a][b] && c <= maxerror[a][b]) {
           sol[a] = sol[a].concat([[L.slice(), c * Math.pow(2, F[a][b]), F[a][b]]]);
         }
       }
@@ -933,14 +933,13 @@ function targetRPM(targets, settings) {
           }
         }
         let L_a = [[]];
-        if (seqLen < 7 && L2[14] !== 0) {
-          let minerror = [[]], maxerror = [[]], F = [[]];
+        if (seqLen < 7) {
+          let error = [[]], F = [[]];
           for (let fact = -Math.abs(L2[14]); fact < Math.abs(L2[14]) + 1; fact++) {
-            minerror[0] = minerror[0].concat([targets[a] * Math.pow(2, -fact) * (1 - 1 / 100000000)]);
-            maxerror[0] = maxerror[0].concat([targets[a] * Math.pow(2, -fact) * (1 + 1 / 100000000)]);
+            error[0] = error[0].concat([targets[a] * Math.pow(2, -fact)]);
             F[0] = F[0].concat([fact]);
           } 
-          looprs(seqLen, minerror, maxerror, F, L_a, [], 0);
+          looprs(seqLen, error, error, F, L_a, [], 0);
         }
         L[a] = L_a[0].length === 0 ? [[R, targets[a], L2[14]]] : L_a[0];
         successfulExactSearches.push(a);
@@ -1112,7 +1111,7 @@ function targetRPM(targets, settings) {
   for (let b = 0; b < targets.length; b++) {
     if (L[b][0][2] === "") {
       var lastTr = document.createElement("tr");
-      lastTr.id = "resultLine" + (b+1);
+      lastTr.id = "resultLine" + (b + 1);
       lastTh = document.createElement("th");
       lastTh.appendChild(document.createTextNode(targetList[b]));
       lastTr.appendChild(lastTh);
@@ -1121,7 +1120,7 @@ function targetRPM(targets, settings) {
       lastTh = document.createElement("th");
       lastTh.appendChild(document.createTextNode(L[b][0][1]));
       lastTr.appendChild(lastTh);
-      lastTr.setAttribute("class","noSolution");
+      lastTr.setAttribute("class", "noSolution");
       resultTableElement.appendChild(lastTr);
     } else {
       let closest = L[b][0][1];
@@ -1182,7 +1181,7 @@ function targetRPM(targets, settings) {
         i--;
       }
       var lastTr = document.createElement("tr");
-      lastTr.id = "resultLine" + (b+1);
+      lastTr.id = "resultLine" + (b + 1);
       lastTh = document.createElement("th");
       lastTh.appendChild(document.createTextNode(targetList[b]));
       lastTr.appendChild(lastTh);
@@ -1423,10 +1422,10 @@ function targetRPM(targets, settings) {
                 lastSpan.children[0].appendChild(document.createTextNode(c[0]));
               }
             } else if (c < 0) {
-              lastSpan.setAttribute("class","ACGNeg");
+              lastSpan.setAttribute("class", "ACGNeg");
               lastSpan.appendChild(document.createTextNode(-c));
             } else {
-              lastSpan.setAttribute("class","ACGPos");
+              lastSpan.setAttribute("class", "ACGPos");
               lastSpan.appendChild(document.createTextNode(c));
             }
             lastDiv.appendChild(lastSpan);
@@ -1434,13 +1433,13 @@ function targetRPM(targets, settings) {
           lastTh.appendChild(lastDiv);
           lastDiv = document.createElement("div");
           if (a[1] > 0) {
-            lastDiv.setAttribute("class","doublePos");
+            lastDiv.setAttribute("class", "doublePos");
             lastDiv.appendChild(document.createTextNode(a[1]));
           } else if (a[1] < 0) {
-            lastDiv.setAttribute("class","doubleNeg");
+            lastDiv.setAttribute("class", "doubleNeg");
             lastDiv.appendChild(document.createTextNode(-a[1]));
           } else {
-            lastDiv.setAttribute("class","double0");
+            lastDiv.setAttribute("class", "double0");
             lastDiv.appendChild(document.createTextNode(0));
           }
           lastTh2.appendChild(lastDiv);
@@ -1452,7 +1451,7 @@ function targetRPM(targets, settings) {
       lastTh.appendChild(document.createTextNode(closest));
       if (successfulExactSearches.length !== 0) {
         if (successfulExactSearches[0] === b) {
-          lastTh.setAttribute("class","successExact");
+          lastTh.setAttribute("class", "successExact");
           successfulExactSearches.shift();
         }
       }
